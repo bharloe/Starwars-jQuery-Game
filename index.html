@@ -62,8 +62,10 @@
         var playerChosenBool = false;
         var enemyChosen = false;
         var enemiesRemaining = 3;
+        var index = 5;
         var hero;
         var villain;
+        
 
 
 
@@ -105,6 +107,8 @@
                 $("#luke").animate({ top: '300px' }, "normal");
                 playerChosen(lukeSkywalker);
             } else if (enemyChosen === false) {
+                index++;
+                $("#luke").css( "zIndex", index)
                 $("#luke").animate({ top: '300px', left: '630px' }, "normal");
                 var luke = $("#luke");
                 setEnemy(luke, lukeSkywalker);
@@ -116,6 +120,8 @@
                 $("#obiwan").animate({ top: '300px', right: '210px' }, "normal");
                 playerChosen(obiWanKenobi);
             } else if (enemyChosen === false) {
+                index++;
+                $("#obiwan").css( "zIndex", index)
                 $("#obiwan").animate({ top: '300px', left: '420px' }, "normal");
                 var obiwan = $("#obiwan");
                 setEnemy(obiwan, obiWanKenobi);
@@ -127,6 +133,8 @@
                 $("#darthvader").animate({ top: '300px', right: '420px' }, "normal");
                 playerChosen(darthVader)
             } else if (enemyChosen === false) {
+                index++;
+                $("#darthvader").css( "zIndex", index )
                 $("#darthvader").animate({ top: '300px', left: '210px' }, "normal");
                 var vader = $("#darthvader");
                 setEnemy(vader, darthVader);
@@ -138,6 +146,8 @@
                 $("#darthmaul").animate({ top: '300px', right: '630px' }, "normal");
                 playerChosen(darthMaul);
             } else if (enemyChosen === false) {
+                index++;
+                $("#darthmaul").css( "zIndex", index )
                 $("#darthmaul").animate({ top: '300px' }, "normal");
                 var maul = $("#darthmaul");
                 setEnemy(maul, darthMaul);
