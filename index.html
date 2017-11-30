@@ -40,8 +40,12 @@
 
             <div id="fightPanel">
                 <button id="attack">Attack</button>
-                <div>Health: 100hp</div>
-                <div>Enemy Health: 100hp</div>
+                <div>Health:
+                    <span id="playerHealth">100hp</span>
+                </div>
+                <div>Enemy Health:
+                    <span id="enemyHealth">100hp</span>
+                </div>
             </div>
         </div>
     </div>
@@ -53,13 +57,33 @@
         //need way to pick enemy
         //need to change enemy color red
         //need attack button
+        var playerChosen = false;
+        var enemyChosen = false;
+
+
+        //Pick players, enemies
 
         $("#luke").on("click", function () {
-            $("#luke").animate({ top: '300px' }, "normal");
+            if (playerChosen === false) {
+                $("#luke").animate({ top: '300px' }, "normal");
+                playerChosen = true;
+            } else if (enemyChosen === false) {
+                $("#luke").animate({ top: '300px', left: '630px' }, "normal");
+                var luke = $("#luke");
+                setEnemy(luke);
+            }
         });
 
         $("#obiwan").on("click", function () {
-            $("#obiwan").animate({ top: '300px', right: '210px' }, "normal");
+            if (playerChosen === false) {
+                $("#obiwan").animate({ top: '300px', right: '210px' }, "normal");
+                playerChosen = true;
+            } else if (enemyChosen === false) {
+                $("#obiwan").animate({ top: '300px', left: '420px' }, "normal");
+                var obiwan = $("#obiwan");
+                setEnemy(obiwan);
+
+            }
         });
 
         $("#darthvader").on("click", function () {
@@ -69,6 +93,21 @@
         $("#darthmaul").on("click", function () {
             $("#darthmaul").animate({ top: '300px', right: '630px' }, "normal");
         });
+
+
+
+        // functions
+
+        //set enemy function
+        function setEnemy(fighter) {
+            enemyChosen = false;
+            fighter.css("background-color", "red");
+            fighter.css("border", "2px solid black");
+            $("#fightPanel").show();
+
+            //NEEDED: set health values, probably should be separate functions
+        };
+
     </script>
 
 
