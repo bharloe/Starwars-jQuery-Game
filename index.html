@@ -38,9 +38,38 @@
 
         <div id="fight">
 
-
+            <div id="fightPanel">
+                <button id="attack">Attack</button>
+                <div>Health: 100hp</div>
+                <div>Enemy Health: 100hp</div>
+            </div>
         </div>
     </div>
+
+
+    <script>
+        //need names
+        //need health track
+        //need way to pick enemy
+        //need to change enemy color red
+        //need attack button
+
+        $("#luke").on("click", function () {
+            $("#luke").animate({ top: '300px' }, "normal");
+        });
+
+        $("#obiwan").on("click", function () {
+            $("#obiwan").animate({ top: '300px', right: '210px' }, "normal");
+        });
+
+        $("#darthvader").on("click", function () {
+            $("#darthvader").animate({ top: '300px', right: '420px' }, "normal");
+        });
+
+        $("#darthmaul").on("click", function () {
+            $("#darthmaul").animate({ top: '300px', right: '630px' }, "normal");
+        });
+    </script>
 
 
 </body>
