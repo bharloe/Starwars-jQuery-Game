@@ -61,8 +61,10 @@
         //variables
         var playerChosenBool = false;
         var enemyChosen = false;
+        var enemiesRemaining = 3;
         var hero;
         var villain;
+
 
 
 
@@ -71,13 +73,13 @@
         var lukeSkywalker = {
             name: "Luke Skywalker",
             health: 110,
-            damage: 20
+            damage: 15
         };
 
         var obiWanKenobi = {
             name: "Obi Wan Kenobi",
-            health: 120,
-            damage: 25
+            health: 150,
+            damage: 35
         };
 
         var darthVader = {
@@ -88,8 +90,8 @@
 
         var darthMaul = {
             name: "Darth Maul",
-            health: 140,
-            damage: 35
+            health: 120,
+            damage: 20
         };
 
 
@@ -184,14 +186,17 @@
         //fight function
 
         function fight() {
-            
+            if (enemiesRemaining === 0) {
+                $("#instructionText").text("Congratulations, you have won!");
+                return;
+            }
 
             var heroDamage = hero.damage;
             var villainDamage = villain.damage;
 
             hero.health = hero.health - villainDamage;
             villain.health = villain.health - heroDamage;
-            hero.damage = Math.floor(hero.damage * 1.3);
+            hero.damage = Math.floor(hero.damage * 1.4);
 
             setHealth(hero, false);
             setHealth(villain, true);
@@ -202,6 +207,12 @@
                 return;
             } else if (villain.health < 1) {
                 enemyChosen = false;
+                enemiesRemaining--;
+
+                if (enemiesRemaining === 0) {
+                    $("#instructionText").text("Congratulations, you have won!");
+                    return;
+                }
                 $("#instructionText").text("You have defeated " + villain.name + ", pick a new challenger!");
                 return;
             }
