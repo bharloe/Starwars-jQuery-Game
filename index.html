@@ -33,7 +33,7 @@
             </div>
         </div>
         <div id="instructions">
-            <h2>Pick you character</h2>
+            <h2 id="instructionText">Pick you character</h2>
         </div>
 
         <div id="fight">
@@ -57,41 +57,82 @@
         //need way to pick enemy
         //need to change enemy color red
         //need attack button
-        var playerChosen = false;
+
+        //variables
+        var playerChosenBool = false;
         var enemyChosen = false;
 
+
+        //objects 
+
+        var lukeSkywalker = {
+            name: "Luke Skywalker",
+            health: 110,
+            damage: 20
+        };
+
+        var obiWanKenobi = {
+            name: "Obi Wan Kenobi",
+            health: 120,
+            damage: 25
+        };
+
+        var darthVader = {
+            name: "Darth Vader",
+            health: 130,
+            damage: 30
+        };
+
+        var darthMaul = {
+            name: "Darth Maul",
+            health: 140,
+            damage: 35
+        };
 
         //Pick players, enemies
 
         $("#luke").on("click", function () {
-            if (playerChosen === false) {
+            if (playerChosenBool === false) {
                 $("#luke").animate({ top: '300px' }, "normal");
-                playerChosen = true;
+                playerChosen(lukeSkywalker);
             } else if (enemyChosen === false) {
                 $("#luke").animate({ top: '300px', left: '630px' }, "normal");
                 var luke = $("#luke");
-                setEnemy(luke);
-            }
+                setEnemy(luke, lukeSkywalker);
+            };
         });
 
         $("#obiwan").on("click", function () {
-            if (playerChosen === false) {
+            if (playerChosenBool === false) {
                 $("#obiwan").animate({ top: '300px', right: '210px' }, "normal");
-                playerChosen = true;
+                playerChosen(obiWanKenobi);
             } else if (enemyChosen === false) {
                 $("#obiwan").animate({ top: '300px', left: '420px' }, "normal");
                 var obiwan = $("#obiwan");
-                setEnemy(obiwan);
-
-            }
+                setEnemy(obiwan, obiWanKenobi);
+            };
         });
 
         $("#darthvader").on("click", function () {
-            $("#darthvader").animate({ top: '300px', right: '420px' }, "normal");
+            if (playerChosenBool === false) {
+                $("#darthvader").animate({ top: '300px', right: '420px' }, "normal");
+                playerChosen(darthVader)
+            } else if (enemyChosen === false) {
+                $("#darthvader").animate({ top: '300px', left: '210px' }, "normal");
+                var vader = $("#darthvader");
+                setEnemy(vader, darthVader);
+            };
         });
 
         $("#darthmaul").on("click", function () {
-            $("#darthmaul").animate({ top: '300px', right: '630px' }, "normal");
+            if (playerChosenBool === false) {
+                $("#darthmaul").animate({ top: '300px', right: '630px' }, "normal");
+                playerChosen(darthMaul);
+            } else if (enemyChosen === false) {
+                $("#darthmaul").animate({ top: '300px' }, "normal");
+                var maul = $("#darthmaul");
+                setEnemy(maul, darthMaul);
+            };
         });
 
 
@@ -99,13 +140,32 @@
         // functions
 
         //set enemy function
-        function setEnemy(fighter) {
-            enemyChosen = false;
+        function playerChosen(fighterObj) {
+            playerChosenBool = true;
+            setHealth(fighterObj, false);
+            $("#instructionText").text("You chose " + fighterObj.name + ". Pick your enemy!");
+        };
+
+        function setEnemy(fighter, fighterObj) {
+            enemyChosen = true;
             fighter.css("background-color", "red");
             fighter.css("border", "2px solid black");
+
+            setHealth(fighterObj, true);
             $("#fightPanel").show();
+            $("#instructionText").text("Press attack to fight!");
 
             //NEEDED: set health values, probably should be separate functions
+        };
+
+        function setHealth(fighterObj, enemyBool) {
+            if (enemyBool === false) {
+                var hp = fighterObj.health;
+                $("#playerHealth").text(hp);
+            } else {
+                var hp = fighterObj.health;
+                $("#enemyHealth").text(hp);
+            }
         };
 
     </script>
