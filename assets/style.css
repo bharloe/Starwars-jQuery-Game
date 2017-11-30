@@ -1,10 +1,17 @@
+@font-face {
+    font-family: starWars;
+    src: url(fonts/deathstar/DeathStar.otf);
+}
+
 body {
     background-image: url("xwing.jpg");
     color: yellow;
+    
 }
 
 h1 {
     font-size: 250%;
+    
 }
 
 h2 {
@@ -20,6 +27,8 @@ img {
 #logo {
     margin-bottom: 20px;
     text-align: center;
+    font-family: starWars;
+    font-size: 400%;
 }
 
 #fight {
@@ -71,7 +80,7 @@ img {
     width: 150px;
     height: 175px;
     float: left;
-    border: 5px solid green;
+    border: 2px solid green;
     border-radius: 25px;
     background: white;
     margin: 0 20px 0 20px;

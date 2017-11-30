@@ -198,7 +198,7 @@
             $("#instructionText").text("You did " + heroDamage + " damage, your enemy did " + villainDamage + " damage to you!");
 
             if (hero.health < 1) {
-                $("#instructionText").text("Sorry, you have been defeated!");
+                $("#instructionText").text("Sorry, you have been defeated! Refresh the page to try again.");
                 return;
             } else if (villain.health < 1) {
                 enemyChosen = false;
